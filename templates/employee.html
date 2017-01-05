@@ -1,21 +1,40 @@
-      <div class="container-fluid">
+<div class="container-fluid">
 
-      <!-- <nav class="navbar navbar-default"> -->
-        <a href="#">
-          <span><img class="back" src="images/previous.png"/></img></span>
-        </a>
-         <span class="date">{{ today | date : "MMMM y" }}</span>
+    <!-- <nav class="navbar navbar-default"> -->
+    <a href="#">
+        <span><img class="back" src="images/previous.png"/></img></span>
+    </a>
+    <span class="date">{{ today | date : "MMMM y" }}</span>
 
-         <a href="#id">
-           <span><img class="mail" src="images/email.png"/></img></span>
-        </a>
-        <div><span class="rectangle">10/100</span>&nbsp&nbsp<span class="unmarked">Unmarked</span></div>
-      <!-- <div class="container-fluid"> -->
-        <itemCard></itemCard>
-      <div id="main" class="row cards">
-            <div class="col-lg-4 col-md-6 col-xs-12" ng-repeat="i in items">
-                <div item-card item="i"></div>
+    <span><img type="button" class="mail" src="images/email.png"/ data-toggle="modal" data-target="#myModal"></img></span>
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog modal-sm">
+            <div  class="modal-content">
+                    <p class="data">Do you want to send email alerts?</p>
+                  </div>
+                  <div>
+                    <button id=btn type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button id=btn1 type="button" class="btn btn-default" data-dismiss="modal" data-toggle="modal" data-target="#mymodal1">Yes</button>
             </div>
-      </div>
-          <hr/>
         </div>
+      </div>
+    <div class="modal fade" id="mymodal1" role="dialog">
+        <div class="modal-dialog modal-sm">
+            <div  class="modal-content">
+                    <p class="data1">Sent Successfully!</p>
+                  </div>
+                  <div>
+                    <button id="btn2" type="button" class="btn btn-default" data-dismiss="modal">Ok</button>
+            </div>
+        </div>
+    </div>
+
+<div><span class="rectangle">10/100</span>&nbsp&nbsp<strong class="unmarked">Unmarked</strong></div>
+<!-- <itemCard></itemCard> -->
+<div id="main" class="row cards">
+    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" ng-repeat="i in items">
+        <div item-card item="i"></div>
+    </div>
+</div>
+<hr/>
+</div>

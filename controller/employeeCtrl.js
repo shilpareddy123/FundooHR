@@ -4,6 +4,7 @@
 
 angular.module('mainApp')
 .controller('employeeCtrl', employeeCtrl);
+
 /* Controllers */
 function employeeCtrl($scope) {
   $scope.today = new Date();
@@ -16,33 +17,33 @@ function employeeCtrl($scope) {
         src: 'images/IMG_20161218_184613_1482391834595(1).jpg'
       },
       {
-          employeeName:'Swati',
+          employeeName:'Pranali',
           employeeStatus: 'Fellowship',
           company: 'BridgeLabz',
           mobile:'9876000012',
           emailId : 'artipatel@gmail.com',
-          src: 'images/IMG_20161218_184613_1482391834595(1).jpg'
+          src: 'images/images(1).jpg'
         },{
-            employeeName:'Swati',
+            employeeName:'Virat',
             employeeStatus: 'Fellowship',
             company: 'BridgeLabz',
             mobile:'9876000012',
             emailId : 'artipatel@gmail.com',
-            src: 'images/IMG_20161218_184613_1482391834595(1).jpg'
+            src: 'images/kohli2503.jpg'
           },  {
-                employeeName:'Swati',
+                employeeName:'xyz',
                 employeeStatus: 'Fellowship',
                 company: 'BridgeLabz',
                 mobile:'9876000012',
                 emailId : 'artipatel@gmail.com',
-                src: 'images/IMG_20161218_184613_1482391834595(1).jpg'
+                src: 'images/image.004.jpg'
               },{
-                  employeeName:'Swati',
+                  employeeName:'abc',
                   employeeStatus: 'Fellowship',
                   company: 'BridgeLabz',
                   mobile:'9876000012',
                   emailId : 'artipatel@gmail.com',
-                  src: 'images/IMG_20161218_184613_1482391834595(1).jpg'
+                  src: 'images/index.000.jpg'
                 }];
 
     $scope.cardItems = [];
@@ -59,6 +60,21 @@ function employeeCtrl($scope) {
     };
 
 }
+angular.module('mainApp').controller('employeeCtrl', function($scope,$http) {
+// localStorage.setItem('key', value);
+var akey=localStorage.getItem('satellizer_token');
+ console.log("key:",akey);
+
+$http({
+method: 'GET',
+url: 'http://192.168.0.171:3000//sendEmailToUnmarkedEmployee?timeStamp=1483315200000&token=21hghj'
+
+}).then(function(data) {
+console.log(data);
+
+});
+});
+
 /* Directives */
 
 angular.module('mainApp')
@@ -77,11 +93,16 @@ angular.module('mainApp')
             };
         },
         replace: true,
-        template: '<div class="item" style="height:auto;"><div class="item-int"><h3>{{item.employeeName}}</h3>\
+        template: '<a href="#"><div class="item" style="height:auto;"><div class="item-int"><h3>{{item.employeeName}}</h3>\
                 <div class="data"><img ng-src="{{item.src}}"/>\
                 <span class="left">{{item.employeeStatus}}</span>\
                 <span class="left">{{item.company}}</span>\
                 <span class="left">{{item.mobile}}</span>\
-                <span class="left">{{item.emailId}}</span></div></div></div>'
+                <span class="left">{{item.emailId}}</span></div></div></div></a>'
     };
+});
+$(function() {
+$('#btn1').click(function() {
+		$('#myModal').modal('hide');
+	});
 });

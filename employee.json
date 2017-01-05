@@ -1,4 +1,5 @@
-[
+{
+  "employee":[
   {
     "employeeName":"swati",
     "employeeStatus": "Fellowship",
@@ -42,3 +43,4 @@
       "emailId" : "artipatel@bridgelabz.com"
      },
 ]
+}

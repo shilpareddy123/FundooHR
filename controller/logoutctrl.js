@@ -8,6 +8,6 @@ angular.module('mainApp')
         $state.go('login');
       }).catch(function (error) {
         console.log(error.data.message, error.status);
-        // toastr.error(error.data.message, error.status);
+       toastr.error(error.data.message, error.status);
       });
   });
