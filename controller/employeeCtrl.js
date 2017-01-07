@@ -3,77 +3,78 @@
 // Declare app level module which depends on filters, and services
 
 angular.module('mainApp')
-.controller('employeeCtrl', employeeCtrl);
+    .controller('employeeCtrl', employeeCtrl);
 
-function employeeCtrl($scope,$http) {
-console.log("unmark");
-  var akey=localStorage.getItem('satellizer_token');
-$scope.today=new Date();
+function employeeCtrl($scope, $http) {
+    console.log("unmark");
+    var akey = localStorage.getItem('satellizer_token');
+    console.log(akey);
+    $scope.today = new Date();
+    $http({
+        "method": "GET",
+        "url": "http://192.168.0.171:3000/readLeaveEmployee?token=" + akey + "&timeStamp=" + Date.now()
+            // "data":{token:"fjhdfdjkfdkfdkbfk",timeStamp:Date.now()}
+    }).then(function(data) {
+        console.log(data.data);
+        $scope.items = data.data.leaveOutEmployee;
+        $scope.leave = data.data.employeLeave;
+        $scope.total = data.data.totalEmployee;
 
-  $http({
-    "method":"POST",
-    "url":"http://192.168.0.171:3000/sendEmailToUnmarkedEmployee",
-    "data":{token:"fjhdfdjkfdkfdkbfk",timeStamp:Date.now()}
-  }).then(function(data){
-    console.log(data.data);
-
-    $scope.items=data.data.unmarkEmployee;
-    
-  }).catch(function(err){
-    console.log(err);
-  })
+    }).catch(function(err) {
+        console.log(err);
+    })
 
 
-/* Controllers */
-// function employeeCtrl($scope) {
-//   $scope.today = new Date();
-//     $scope.items = [{
-//         employeeName:'Swati',
-//         employeeStatus: 'Fellowship',
-//         company: 'BridgeLabz',
-//         mobile:'9876000012',
-//         emailId : 'artipatel@gmail.com',
-//         src: 'images/IMG_20161218_184613_1482391834595(1).jpg'
-//       },
-//       {
-//           employeeName:'Pranali',
-//           employeeStatus: 'Fellowship',
-//           company: 'BridgeLabz',
-//           mobile:'9876000012',
-//           emailId : 'artipatel@gmail.com',
-//           src: 'images/images(1).jpg'
-//         },{
-//             employeeName:'Virat',
-//             employeeStatus: 'Fellowship',
-//             company: 'BridgeLabz',
-//             mobile:'9876000012',
-//             emailId : 'artipatel@gmail.com',
-//             src: 'images/kohli2503.jpg'
-//           },  {
-//                 employeeName:'xyz',
-//                 employeeStatus: 'Fellowship',
-//                 company: 'BridgeLabz',
-//                 mobile:'9876000012',
-//                 emailId : 'artipatel@gmail.com',
-//                 src: 'images/image.004.jpg'
-//               },{
-//                   employeeName:'abc',
-//                   employeeStatus: 'Fellowship',
-//                   company: 'BridgeLabz',
-//                   mobile:'9876000012',
-//                   emailId : 'artipatel@gmail.com',
-//                   src: 'images/index.000.jpg'
-//                 }];
-//
+    /* Controllers */
+    // function employeeCtrl($scope) {
+    //   $scope.today = new Date();
+    //     $scope.items = [{
+    //         employeeName:'Swati',
+    //         employeeStatus: 'Fellowship',
+    //         company: 'BridgeLabz',
+    //         mobile:'9876000012',
+    //         emailId : 'artipatel@gmail.com',
+    //         src: 'images/IMG_20161218_184613_1482391834595(1).jpg'
+    //       },
+    //       {
+    //           employeeName:'Pranali',
+    //           employeeStatus: 'Fellowship',
+    //           company: 'BridgeLabz',
+    //           mobile:'9876000012',
+    //           emailId : 'artipatel@gmail.com',
+    //           src: 'images/images(1).jpg'
+    //         },{
+    //             employeeName:'Virat',
+    //             employeeStatus: 'Fellowship',
+    //             company: 'BridgeLabz',
+    //             mobile:'9876000012',
+    //             emailId : 'artipatel@gmail.com',
+    //             src: 'images/kohli2503.jpg'
+    //           },  {
+    //                 employeeName:'xyz',
+    //                 employeeStatus: 'Fellowship',
+    //                 company: 'BridgeLabz',
+    //                 mobile:'9876000012',
+    //                 emailId : 'artipatel@gmail.com',
+    //                 src: 'images/image.004.jpg'
+    //               },{
+    //                   employeeName:'abc',
+    //                   employeeStatus: 'Fellowship',
+    //                   company: 'BridgeLabz',
+    //                   mobile:'9876000012',
+    //                   emailId : 'artipatel@gmail.com',
+    //                   src: 'images/index.000.jpg'
+    //                 }];
+    //
     $scope.cardItems = [];
 
-    $scope.employees = function (employeeName, employeeStatus,company,mobile,emailId) {
+    $scope.employees = function(employeeName, employeeStatus, company, mobile, emailId) {
         var objAdded = {
-            employeeName:employeeName,
-            employeeStatus:employeeStatus,
-            company:company,
-            mobile:mobile,
-            emailId:emailId
+            employeeName: employeeName,
+            employeeStatus: employeeStatus,
+            company: company,
+            mobile: mobile,
+            emailId: emailId
         };
         $scope.cardItems.push(objAdded);
     };
@@ -84,30 +85,30 @@ $scope.today=new Date();
 
 angular.module('mainApp')
 
-.directive('itemCard', function () {
+.directive('itemCard', function() {
     // return the directive definition object
     return {
         scope: {
-            item:"="
+            item: "="
         },
-        controller: function ($scope, $element, $attrs, $location) {
-            $scope.addToCart = function (value, key) {
+        controller: function($scope, $element, $attrs, $location) {
+            $scope.addToCart = function(value, key) {
                 var mainScope = angular.element("#main").scope();
                 mainScope.employees(value, key);
                 return false;
             };
         },
         replace: true,
-        template: '<a href="#"><div class="item" style="height:auto;"><div class="item-int"><h3>{{item.employeeName}}</h3>\
-                <div class="data"><img ng-src="{{item.src}}"/>\
-                <span class="left">{{item.employeeStatus}}</span>\
-                <span class="left">{{item.company}}</span>\
-                <span class="left">{{item.mobile}}</span>\
+        template: '<a href="#"><div class="item" style="height:auto;"></img><div class="item-int"><h3>{{item.employeeName}}</h3>\
+                <div class="data"><img src="images/image.004.jpg"/>\
+              <span class="left">{{item.employeeStatus}}</span>\
+              <span class="left">{{item.company}}</span>\
+          <span class="left">{{item.mobile}}</span>\
                 <span class="left">{{item.emailId}}</span></div></div></div></a>'
     };
 });
 $(function() {
-$('#btn1').click(function() {
-		$('#myModal').modal('hide');
-	});
+    $('#btn1').click(function() {
+        $('#myModal').modal('hide');
+    });
 });

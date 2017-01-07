@@ -45,7 +45,7 @@ strong.unmarked {
     line-height: 0px;
     font-size: 18px;
     letter-spacing: 0px;
-    vertical-align: text-bottom;
+    vertical-align: sub;
 }
 
 span.rectangle {
@@ -61,6 +61,7 @@ span.rectangle {
     margin-top: 1%;
     color: #FFFFFF;
     font-size: 14px;
+    padding-top: 4px;
 }
 
 .modal.in .modal-dialog {
@@ -133,13 +134,3 @@ span.rectangle {
     color: rgba(111, 184, 217, 1);
     margin-left: 38%;
 }
-
-
-/*#md-raised[disabled]{
-    color:rgba(59, 83, 114, 1);
-    background-color: white;
-}
-#md-raised {
-    color:rgba(255, 255, 255, 1);
-    background-color: #6FB8D9;
-    /*background-color : black;*/

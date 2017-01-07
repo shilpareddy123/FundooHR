@@ -29,11 +29,15 @@
         </div>
     </div>
 
-<div><span class="rectangle">10/100</span>&nbsp&nbsp<strong class="unmarked">Unmarked</strong></div>
+<div><span class="rectangle">{{leave}}/{{total}}</span>&nbsp&nbsp<strong class="unmarked">Unmarked</strong></div>
 <!-- <itemCard></itemCard> -->
 <div id="main" class="row cards">
-    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" ng-repeat="i in items">
-        <div item-card item="i"></div>
+    <div class="col-lg-4 col-md-6  col-xs-12" ng-repeat="i in items">
+<!-- <col-lg-3 col-md-4 col-sm-6 col-xs-12> -->
+
+        <div item-card item="i">
+              
+        </div>
     </div>
 </div>
 <hr/>
