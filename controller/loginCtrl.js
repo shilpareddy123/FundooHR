@@ -1,30 +1,23 @@
 angular.module('mainApp').controller('LoginCtrl', function ($scope, $state,$auth) {
-  //  $scope.formSubmit = function() {
-  //     if(LoginService.login($scope.email, $scope.password)) {
-  //       $scope.error = '';
-  //       $scope.email = '';
-  //       $scope.password = '';
-  //       $state.transitionTo('home');
-  //     } else {
-  //       $scope.error = "Incorrect email/password !";
-  //     }
-  //   };
   var config = {method: 'POST',url: 'http://192.168.0.171:3000/login'};
   $scope.login = function () {
-    $auth.login($scope.user,config)
+    $auth.login($scope.user,config)//http config object
       .then(function (data) {
-
+// Redirect user here after a successful log in.
         console.log("You have successfully signed in!")
          $state.go('home');
         // $location.path('/');
       })
       .catch(function (error) {
+         // Handle errors here, such as displaying a notification
         console.log(error.data.message, error.status);
         $scope.error = "Incorrect email/password !";
         // toastr.error(error.data.message, error.status);
       });
   };
   $scope.authenticate = function (provider) {
+    //check authentication status of a user
+
     $auth.authenticate(provider)
       .then(function () {
         console.log("You have successfully signed in!" + provider + "!");

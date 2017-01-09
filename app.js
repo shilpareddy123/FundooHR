@@ -27,9 +27,9 @@ mainApp.config( function ($stateProvider, $urlRouterProvider, $httpProvider, $au
             url: '/login',
             templateUrl: 'templates/login.html',
             controller: 'LoginCtrl',
-            resolve: {
-                skipIfLoggedIn: skipIfLoggedIn
-            }
+            // resolve: {
+            //     skipIfLoggedIn: skipIfLoggedIn
+            // }
         })
         .state('logout', {
             url: '/logout',
@@ -40,25 +40,25 @@ mainApp.config( function ($stateProvider, $urlRouterProvider, $httpProvider, $au
             url: '/',
             templateUrl: 'templates/home.html',
             controller: 'HomeCtrl',
-              resolve: {
-                      loginRequired: loginRequired
-                    }
+              // resolve: {
+              //         loginRequired: loginRequired
+              //       }
         })
         .state('home.DashBoard',{
             url:'dash',
             templateUrl: 'templates/cards.html',
             controller: 'DashCtrl',
-              resolve: {
-                      loginRequired: loginRequired
-                    }
+              // resolve: {
+              //         loginRequired: loginRequired
+              //       }
         })
          .state('home.Attendence',{
          url:'Attnd',
           templateUrl: 'templates/employee.html',
        controller: 'employeeCtrl',
-             resolve: {
-                      loginRequired: loginRequired
-                  }
+            //  resolve: {
+            //           loginRequired: loginRequired
+            //       }
    })
 
 });

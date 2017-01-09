@@ -6,23 +6,39 @@ angular.module('mainApp')
     .controller('employeeCtrl', employeeCtrl);
 
 function employeeCtrl($scope, $http) {
-    console.log("unmark");
-    var akey = localStorage.getItem('satellizer_token');
+    console.log("Leave Summary");
+    var akey = localStorage.getItem('satellizer_token'); //client side key
     console.log(akey);
-    $scope.today = new Date();
+    $scope.today = new Date(); //Date object
     $http({
         "method": "GET",
         "url": "http://192.168.0.171:3000/readLeaveEmployee?token=" + akey + "&timeStamp=" + Date.now()
             // "data":{token:"fjhdfdjkfdkfdkbfk",timeStamp:Date.now()}
     }).then(function(data) {
         console.log(data.data);
+        //store leaveOutEmployee data's into items
         $scope.items = data.data.leaveOutEmployee;
+        //from postman store employeeLeave data to leave
         $scope.leave = data.data.employeLeave;
+        //store totalEmployee data from postman to total
         $scope.total = data.data.totalEmployee;
 
     }).catch(function(err) {
         console.log(err);
     })
+
+    $http({
+      "method":"POST",
+      "url":"http://192.168.0.171:3000/sendEmailToLeaveEmployee",
+      "data":{token:"akey",timeStamp:Date.now()}
+    }).then(function(data){
+      console.log(data.data);
+    }).catch(function(err){
+      console.log(err);
+    })
+
+
+
 
 
     /* Controllers */
