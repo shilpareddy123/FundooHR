@@ -27,19 +27,22 @@ function employeeCtrl($scope, $http) {
         console.log(err);
     })
 
-    $http({
+$scope.confirm=function() {
+  console.log("calling..");
+     $http({
       "method":"POST",
       "url":"http://192.168.0.171:3000/sendEmailToLeaveEmployee",
-      "data":{token:"akey",timeStamp:Date.now()}
-    }).then(function(data){
+       "data":{token:"akey",timeStamp:Date.now()}
+     }).then(function(data){
       console.log(data.data);
-    }).catch(function(err){
-      console.log(err);
-    })
-
-
-
-
+     }).catch(function(err){
+       console.log(err);
+     })
+}
+$scope.cancel=function() {
+  
+  console.log("message cant sent");
+}
 
     /* Controllers */
     // function employeeCtrl($scope) {
@@ -81,7 +84,7 @@ function employeeCtrl($scope, $http) {
     //                   emailId : 'artipatel@gmail.com',
     //                   src: 'images/index.000.jpg'
     //                 }];
-    //
+    //}
     $scope.cardItems = [];
 
     $scope.employees = function(employeeName, employeeStatus, company, mobile, emailId) {
@@ -122,9 +125,4 @@ angular.module('mainApp')
           <span class="left">{{item.mobile}}</span>\
                 <span class="left">{{item.emailId}}</span></div></div></div></a>'
     };
-});
-$(function() {
-    $('#btn1').click(function() {
-        $('#myModal').modal('hide');
-    });
 });

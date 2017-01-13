@@ -1,36 +1,37 @@
 <div class="container-fluid">
 
     <!-- <nav class="navbar navbar-default"> -->
-    <a href="#">
-        <div><img class="back" src="images/previous.png"/></img></div>
+    <a ui-sref="home.DashBoard">
+        <div><img class="back" src="images/previous.png" /></img>
+        </div>
     </a>
     <div class="date">{{ today | date : "MMMM y" }}</div>
-
-    <div><img type="button" class="mail" src="images/email.png"/ data-toggle="modal" data-target="#myModal"></img></div>
-    <div class="modal fade" id="myModal" role="dialog">
-        <div class="modal-dialog modal-sm">
-            <div class="modal-content">
-                <p class="data">Do you want to send email alerts?</p>
-            </div>
-            <div>
-                <button id=btn type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                <button id=btn1 type="button" class="btn btn-default" data-dismiss="modal" data-toggle="modal" data-target="#mymodal1">Yes</button>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="mymodal1" role="dialog">
-        <div class="modal-dialog modal-sm">
-            <div class="modal-content">
-                <p class="data1">Sent Successfully!</p>
-            </div>
-            <div>
-                <button id="btn2" type="button" class="btn btn-default" data-dismiss="modal">Ok</button>
-            </div>
-        </div>
-    </div>
+    <span><img type="button" class="mail" src="images/email.png"/ data-toggle="modal" data-target="#myModal"></img></span>
+  <div class="modal fade" id="myModal" role="dialog">
+      <div class="modal-dialog modal-sm">
+          <div class="modal-content">
+              <p class="data">Do you want to send email alerts?</p>
+          </div>
+          <div>
+              <button id=btn type="button" class="btn btn-default" data-dismiss="modal" ng-click="cancel()">Cancel</button>
+              <button id=btn1 type="button" class="btn btn-default" data-dismiss="modal" data-toggle="modal" ng-click="confirm()" data-target="#mymodal1">Yes</button>
+          </div>
+      </div>
+  </div>
+  <div class="modal fade" id="mymodal1" role="dialog">
+      <div class="modal-dialog modal-sm">
+          <div class="modal-content">
+              <p class="data1">Sent Successfully!</p>
+          </div>
+          <div>
+              <button id="btn2" type="button" class="btn btn-default" data-dismiss="modal">Ok</button>
+          </div>
+      </div>
+  </div>
 
     <div><span class="rectangle">{{leave}}/{{total}}</span>&nbsp&nbsp<strong class="unmarked">Unmarked</strong></div>
-    <!-- <itemCard></itemCard> -->
+
+
     <div id="main" class="row cards">
         <div class="col-lg-4 col-md-6  col-xs-12" ng-repeat="i in items">
             <!-- <col-lg-3 col-md-4 col-sm-6 col-xs-12> -->
@@ -41,3 +42,4 @@
     </div>
     <hr/>
 </div>
+<div ui-view></div>

@@ -60,11 +60,11 @@
     opacity: 100;
     text-align: left;
     color: #3B5372;
-    line-height: 0px;
-    font-size: 24px;
-    letter-spacing: 0px;
-}
 
+    font-size: 24px;
+
+
+}
 .toc1 {
     float: right;
     margin-right: 30px;
