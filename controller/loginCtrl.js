@@ -1,5 +1,5 @@
 angular.module('mainApp').controller('LoginCtrl', function ($scope, $state,$auth) {
-  var config = {method: 'POST',url: 'http://192.168.0.171:3000/login'};
+  var config = {method: 'POST',url: 'http://192.168.0.118:3000/login'};
   $scope.login = function () {
     $auth.login($scope.user,config)//http config object
       .then(function (data) {

@@ -12,7 +12,7 @@ function employeeCtrl($scope, $http) {
     $scope.today = new Date(); //Date object
     $http({
         "method": "GET",
-        "url": "http://192.168.0.171:3000/readLeaveEmployee?token=" + akey + "&timeStamp=" + Date.now()
+        "url": "http://192.168.0.118:3000/readLeaveEmployee?token=" + akey + "&timeStamp=" + Date.now()
             // "data":{token:"fjhdfdjkfdkfdkbfk",timeStamp:Date.now()}
     }).then(function(data) {
         console.log(data.data);
@@ -26,12 +26,12 @@ function employeeCtrl($scope, $http) {
     }).catch(function(err) {
         console.log(err);
     })
-
+//function performing on yes button in modal
 $scope.confirm=function() {
   console.log("calling..");
      $http({
       "method":"POST",
-      "url":"http://192.168.0.171:3000/sendEmailToLeaveEmployee",
+      "url":"http://192.168.0.118:3000/sendEmailToLeaveEmployee",
        "data":{token:"akey",timeStamp:Date.now()}
      }).then(function(data){
       console.log(data.data);
@@ -39,8 +39,9 @@ $scope.confirm=function() {
        console.log(err);
      })
 }
+//function performing cancel button in modal popup
 $scope.cancel=function() {
-  
+
   console.log("message cant sent");
 }
 

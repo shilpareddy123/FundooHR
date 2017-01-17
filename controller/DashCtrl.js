@@ -5,11 +5,11 @@ angular.module('mainApp').controller('DashCtrl', function($scope, $location, $st
     $scope.today = new Date();
     $http({
         "method": "GET",
-        "url": "http://192.168.0.171:3000/readDashboardData?token=" + akey + "&timeStamp=" + Date.now()
+        "url": "http://192.168.0.118:3000/readDashboardData?token=" + akey + "&timeStamp=" + Date.now()
     }).then(function(data) {
         console.log(data.data);
         $scope.leave = data.data.leaveSummary.leave;
     }).catch(function(err) {
         console.log(err);
-    })   
+    })
 })
