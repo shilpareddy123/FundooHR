@@ -1,93 +1,53 @@
 'use strict';
-
 // Declare app level module which depends on filters, and services
-
 angular.module('mainApp')
     .controller('employeeCtrl', employeeCtrl);
 
-function employeeCtrl($scope, $http) {
-    console.log("Leave Summary");
-    var akey = localStorage.getItem('satellizer_token'); //client side key
-    console.log(akey);
-    $scope.today = new Date(); //Date object
-    $http({
-        "method": "GET",
-        "url": "http://192.168.0.118:3000/readLeaveEmployee?token=" + akey + "&timeStamp=" + Date.now()
-            // "data":{token:"fjhdfdjkfdkfdkbfk",timeStamp:Date.now()}
-    }).then(function(data) {
+function employeeCtrl($scope, localStorageService, restService) {
+    var token = localStorageService.get('token');
+    console.log(token);
+    var query = {
+        token: "1a285sdffd8do8fd",
+        timeStamp: Date.now()
+    };
+    var promise = restService.getRequest('readLeaveEmployee', query);
+    promise.then(function(data) {
         console.log(data.data);
-        //store leaveOutEmployee data's into items
+        // store leaveOutEmployee data's into items
         $scope.items = data.data.leaveOutEmployee;
-        //from postman store employeeLeave data to leave
-        $scope.leave = data.data.employeLeave;
-        //store totalEmployee data from postman to total
+        $scope.leave = data.data.employeeLeave;
         $scope.total = data.data.totalEmployee;
+    });
 
-    }).catch(function(err) {
-        console.log(err);
-    })
-//function performing on yes button in modal
-$scope.confirm=function() {
-  console.log("calling..");
-     $http({
-      "method":"POST",
-      "url":"http://192.168.0.118:3000/sendEmailToLeaveEmployee",
-       "data":{token:"akey",timeStamp:Date.now()}
-     }).then(function(data){
-      console.log(data.data);
-     }).catch(function(err){
-       console.log(err);
-     })
-}
-//function performing cancel button in modal popup
-$scope.cancel=function() {
+    //function performing on yes button in modal
+    $scope.confirm = function() {
+        console.log("calling..");
+        var token = localStorage.getItem('satellizer_token');
+        console.log(token);
+        var query = {
+            token,
+            timeStamp: Date.now()
+        };
+        var promise = restService.postRequest('sendEmailToLeaveEmployee', query);
+        promise.then(function(data) {
+            console.log(data.data);
+            if(data.data.status===200){
+              $scope.message="Sent Successfully!";
+            }
+            else if (data.data.status===400) {
+                $scope.message="Cannot sent";
+            }
+            else {
+              $scope.message="Cannot sent";
+            }
 
-  console.log("message cant sent");
-}
+        });
+    }
+    $scope.cancel = function() {
+        console.log("message cant sent");
+    }
 
-    /* Controllers */
-    // function employeeCtrl($scope) {
-    //   $scope.today = new Date();
-    //     $scope.items = [{
-    //         employeeName:'Swati',
-    //         employeeStatus: 'Fellowship',
-    //         company: 'BridgeLabz',
-    //         mobile:'9876000012',
-    //         emailId : 'artipatel@gmail.com',
-    //         src: 'images/IMG_20161218_184613_1482391834595(1).jpg'
-    //       },
-    //       {
-    //           employeeName:'Pranali',
-    //           employeeStatus: 'Fellowship',
-    //           company: 'BridgeLabz',
-    //           mobile:'9876000012',
-    //           emailId : 'artipatel@gmail.com',
-    //           src: 'images/images(1).jpg'
-    //         },{
-    //             employeeName:'Virat',
-    //             employeeStatus: 'Fellowship',
-    //             company: 'BridgeLabz',
-    //             mobile:'9876000012',
-    //             emailId : 'artipatel@gmail.com',
-    //             src: 'images/kohli2503.jpg'
-    //           },  {
-    //                 employeeName:'xyz',
-    //                 employeeStatus: 'Fellowship',
-    //                 company: 'BridgeLabz',
-    //                 mobile:'9876000012',
-    //                 emailId : 'artipatel@gmail.com',
-    //                 src: 'images/image.004.jpg'
-    //               },{
-    //                   employeeName:'abc',
-    //                   employeeStatus: 'Fellowship',
-    //                   company: 'BridgeLabz',
-    //                   mobile:'9876000012',
-    //                   emailId : 'artipatel@gmail.com',
-    //                   src: 'images/index.000.jpg'
-    //                 }];
-    //}
     $scope.cardItems = [];
-
     $scope.employees = function(employeeName, employeeStatus, company, mobile, emailId) {
         var objAdded = {
             employeeName: employeeName,
@@ -98,9 +58,7 @@ $scope.cancel=function() {
         };
         $scope.cardItems.push(objAdded);
     };
-
 }
-
 /* Directives */
 
 angular.module('mainApp')
@@ -119,11 +77,6 @@ angular.module('mainApp')
             };
         },
         replace: true,
-        template: '<a href="#"><div class="item" style="height:auto;"></img><div class="item-int"><h3>{{item.employeeName}}</h3>\
-                <div class="data"><img src="images/image.004.jpg"/>\
-              <span class="left">{{item.employeeStatus}}</span>\
-              <span class="left">{{item.company}}</span>\
-          <span class="left">{{item.mobile}}</span>\
-                <span class="left">{{item.emailId}}</span></div></div></div></a>'
+        templateUrl: "templates/directive.html"
     };
 });

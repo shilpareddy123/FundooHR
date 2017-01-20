@@ -1,4 +1,4 @@
-var mainApp = angular.module("mainApp", ['ui.router', 'ngMaterial', 'ngAnimate', 'ngAria', 'ngMessages', 'satellizer','toastr']);
+var mainApp = angular.module("mainApp", ['ui.router', 'ngMaterial', 'ngAnimate', 'ngAria', 'ngMessages', 'satellizer','toastr','LocalStorageModule']);
 mainApp.config( function ($stateProvider, $urlRouterProvider, $httpProvider, $authProvider) {
   //run function async.return values
   //deferred returns promise object

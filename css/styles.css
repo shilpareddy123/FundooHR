@@ -232,6 +232,11 @@ a:hover {
 /*img.toc {
       margin-right: -60%;
 }*/
+/*@media(max-width:642px) {
+  .toc {
+    margin-right: -430px!important;
+  }
+}*/
 @media (min-width:412px) {
   .toc {
     float: right;
@@ -268,7 +273,7 @@ a:hover {
   width: 24px;
   height: 24px;
   color: #3B5372;
-}
+}ja
 }
 @media(min-width:320px) {
   .toc {
