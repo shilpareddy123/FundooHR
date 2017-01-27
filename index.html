@@ -1,14 +1,15 @@
 <html>
-
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
     <title> FundooHr </title>
+     <!-- Angular Material style sheet -->
     <link rel="stylesheet" href="bower_components1/angular-material/angular-material.css">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="bower_components1/bootstrap/dist/css/bootstrap.min.css">
 
+ <!-- Angular Material requires Angular.js Libraries -->
     <script src="bower_components1/jquery/dist/jquery.js"></script>
     <script src="bower_components1/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="bower_components1/angular/angular.min.js"></script>
@@ -26,18 +27,20 @@
     <script src="bower_components1/satellizer/dist/satellizer.js"></script>
 </head>
 
-<body ng-app="mainApp" class="{{bodyClass}} foo bar" ng-controller="GlobalCtrl">
+<body ng-app="mainApp">
     <itemCard></itemCard>
 
     <ui-view></ui-view>
 
     <script src="app.js"></script>
-    <script src="controller/globalctrl.js"></script>
     <script src="controller/loginCtrl.js"></script>
     <script src="controller/homectrl.js"></script>
     <script src="controller/logoutctrl.js"></script>
     <script src="controller/DashCtrl.js"></script>
     <script src="controller/employeeCtrl.js"></script>
+
+    <script src="directive/leaves.js"></script>
+
     <script src="services/restService.js"></script>
 
 </body>

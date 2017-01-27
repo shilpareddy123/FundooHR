@@ -1,3 +1,8 @@
+.mainpage {
+  background-color: #D8D1C7;
+  width: 100%;
+  height: 100%;
+}
 body.login-page {
     background-color: #D8D1C7;
     background-size: initial;
@@ -9,6 +14,12 @@ body {
 
 .login-box {
     padding-left: 50px;
+}
+
+.show {
+    display: block!important;
+    margin-left: 50px;
+    color: red;
 }
 
 @media(min-width:768px) {
@@ -108,6 +119,10 @@ body {
     width: 195px;
 }
 
+#mainNav {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.46);
+}
+
 .dropdown-menu>li>a {
     display: block;
     clear: both;
@@ -177,9 +192,6 @@ a:hover {
     border-bottom-width: 20%;
 }
 
-
-/*dashboard cards css*/
-
 .sidebar {
     background: rgba(255, 255, 255, 1);
     border: 2px solid rgba(156, 205, 227, 0.99);
@@ -229,22 +241,60 @@ a:hover {
     font-weight: bold;
     margin: 100px 170px 100px 50px;
 }
-/*img.toc {
-      margin-right: -60%;
-}*/
-/*@media(max-width:642px) {
-  .toc {
-    margin-right: -430px!important;
-  }
-}*/
-@media (min-width:412px) {
-  .toc {
-    float: right;
-    display: inline-block;
-    margin-right: -50%;
-    margin-top: -9px;
-  }
+
+.action span.tooltiptext {
+    visibility: hidden;
+    width: 200px;
+    height: 22px;
+    background-color: #3B5372;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 9px 0;
+    font-size: 17px;
+    font-weight: normal;
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    top: 20%;
+    left: 55%;
+    margin-left: -60px;
 }
+
+.action:hover span.tooltiptext {
+    visibility: visible;
+}
+
+.action1 span.tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    height: 22px;
+    background-color: #3B5372;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 2px 0;
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    top: 25%;
+    left: 80%;
+    margin-left: -60px;
+}
+
+.action1:hover span.tooltiptext {
+    visibility: visible;
+}
+
+@media (min-width:412px) {
+    .toc {
+        float: right;
+        display: inline-block;
+        margin-right: -50%;
+        margin-top: -9px;
+    }
+}
+
 @media(min-width:768px) {
     .toc {
         float: right;
@@ -255,38 +305,43 @@ a:hover {
         color: #3B5372;
     }
 }
-@media(min-width:360) {
-  .toc {
-    float: right;
-    margin-right: -30%;
-    margin-top: -10px;
-    width: 24px;
-    height: 24px;
-    color: #3B5372;
-  }
-}
-@media(min-width:412px){
-.toc {
-  float: right;
-  margin-right: -50%;
-  margin-top: -10px;
-  width: 24px;
-  height: 24px;
-  color: #3B5372;
-}ja
-}
-@media(min-width:320px) {
-  .toc {
-    float: right;
-    margin-right: -15%;
 
-  }
+@media(min-width:360) {
+    .toc {
+        float: right;
+        margin-right: -30%;
+        margin-top: -10px;
+        width: 24px;
+        height: 24px;
+        color: #3B5372;
+    }
 }
+
+@media(min-width:412px) {
+    .toc {
+        float: right;
+        margin-right: -50%;
+        margin-top: -10px;
+        width: 24px;
+        height: 24px;
+        color: #3B5372;
+    }
+    ja
+}
+
+@media(min-width:320px) {
+    .toc {
+        float: right;
+        margin-right: -15%;
+    }
+}
+
 @media(min-width:375px) {
-.toc {
-  margin-right: -45%;
+    .toc {
+        margin-right: -45%;
+    }
 }
-}
+
 .toc1 {
     float: right;
     margin-right: 30px;
@@ -369,32 +424,33 @@ a:hover {
     height: 30px;
     text-align: left;
     color: #3B5372;
-  display: inline-block;
+    display: inline-block;
     margin-left: 4%;
     margin-top: -4%;
 }
 
 @media(min-width:768px) {
-.date {
-text-align: center;
-margin: auto 0;
-display: inline-block;
-margin-left: 35%;
-  color: #3B5372;
-  font-size: 30px;
+    .date {
+        text-align: center;
+        margin: auto 0;
+        display: inline-block;
+        margin-left: 35%;
+        color: #3B5372;
+        font-size: 30px;
+    }
 }
-}
-@media (max-width:767px) {
-  .date {
-    color: #3B5372;
-    font-size: 30px;
-    margin-left: 8%;
-  }
 
+@media (max-width:767px) {
+    .date {
+        color: #3B5372;
+        font-size: 30px;
+        margin-left: 8%;
+    }
 }
-div.container-fluid  {
-  padding-right: 15px;
-  padding-left: 0;
+
+div.container-fluid {
+    padding-right: 15px;
+    padding-left: 0;
     margin-left: 0;
     margin-left: 0;
 }
@@ -404,7 +460,7 @@ img.mail {
     height: auto;
     width: 36px;
     float: right;
-margin-right: 15px;
+    margin-right: 15px;
 }
 
 strong.unmarked {
@@ -421,11 +477,13 @@ strong.unmarked {
     letter-spacing: 0px;
     vertical-align: sub;
 }
+
 @media(max-width:360px) {
-.width {
-margin-right: 50px;
+    .width {
+        margin-right: 50px;
+    }
 }
-}
+
 span.rectangle {
     display: inline-block;
     width: 61px;
@@ -453,6 +511,12 @@ span.rectangle {
 
 .modal-content {
     max-height: 0px;
+}
+
+@media(min-width:360px) {
+    .modal.in .modal-dialog {
+        width: 350px;
+    }
 }
 
 #btn {
@@ -552,7 +616,7 @@ body {
     box-shadow: .5px .5px .5px .5px grey;
     display: inline-block;
     width: 310px;
-margin: 2%;
+    margin: 2%;
     background-color: rgba(240, 237, 234, 1);
     box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 50%);
     border-radius: 5px;

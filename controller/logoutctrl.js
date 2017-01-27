@@ -1,3 +1,6 @@
+/**
+*Logout controller
+*/
 angular.module('mainApp')
     .controller('LogoutCtrl', function($location, $auth, $state, toastr) {
         if (!$auth.isAuthenticated()) {
