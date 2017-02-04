@@ -8,7 +8,6 @@ angular.module('mainApp')
         }
         $auth.logout()
         // Deletes a token from Local Storage (or Session Storage).
-
             .then(function() {
                 console.log("logout")
                 toastr.info('You have been logged out');

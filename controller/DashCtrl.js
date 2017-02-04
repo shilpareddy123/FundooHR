@@ -10,13 +10,15 @@ angular.module('mainApp').controller('DashCtrl', function($scope, $location, $st
     console.log(token);
     $scope.today = new Date();
     var query = {
-        token,
         timeStamp: Date.now()
+    };
+    var config={
+      "x-token":token
     };
     /**
      *REST call to display leaves on card
      */
-    restService.getRequest('readDashboardData', query).then(function(data) {
+    restService.getRequest('readDashboardData', query,config).then(function(data) {
         console.log(data.data);
         $scope.leave = data.data.leaveSummary.leave;
 

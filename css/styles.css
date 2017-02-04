@@ -213,6 +213,9 @@ a:hover {
     border: solid 2px #9CCDE3;
     box-shadow: 0 0 1px grey;
 }
+.col-xs-12 {
+  width: 0%;
+}
 
 .text {
     width: 219px;

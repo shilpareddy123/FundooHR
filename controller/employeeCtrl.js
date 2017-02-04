@@ -10,36 +10,38 @@ function employeeCtrl($scope, localStorageService, restService) {
     var token = localStorage.getItem('satellizer_token');
     console.log(token);
     var query = {
-        token: token,
         timeStamp: Date.now()
     };
+     var config={
+       "x-token":token
+     }
     /**
      * REST call to get employees who has taken leaves
      * */
-    restService.getRequest('readLeaveEmployee', query).then(function(data) {
+    restService.getRequest('readLeaveEmployee', query,config).then(function(data) {
         console.log(data.data);
-        // passing leaveOutEmployee data's into items
+        // leaveOutEmployee data's into items
         $scope.items = data.data.leaveOutEmployee;
-        // passing employeeLeave data's into leave
+        //  employeeLeave data's into leave
         $scope.leave = data.data.employeeLeave;
-        // passing totalEmployee data's into total
-
+        // totalEmployee data's into total
         $scope.total = data.data.totalEmployee;
     });
 
     //function performing on yes button in modal
     $scope.confirm = function() {
-        console.log("Successfully sent mail to users");
         var token = localStorage.getItem('satellizer_token');
         console.log(token);
         var query = {
-            token,
-            timeStamp: Date.now()
+              timeStamp: Date.now()
         };
+        var config={
+          'x-token':token
+        }
         /**
          * REST call to post message
          * */
-        restService.postRequest('sendEmailToLeaveEmployee', query).then(function(data) {
+        restService.postRequest('sendEmailToLeaveEmployee', query,config).then(function(data) {
             console.log(data.data);
             if (data.data.status === 200) {
                 $scope.message = "Sent Successfully!";
@@ -61,7 +63,8 @@ function employeeCtrl($scope, localStorageService, restService) {
             employeeStatus: employeeStatus,
             company: company,
             mobile: mobile,
-            emailId: emailId
+            emailId: emailId,
+            imageUrl:imageUrl
         };
         $scope.cardItems.push(objAdded);
     };

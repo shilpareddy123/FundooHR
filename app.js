@@ -1,7 +1,7 @@
 /**
  * FileName:app.js
  * CreatedBy: Shilpa K N
- * purpose : perform routing according to state
+ * purpose : perform routing according to state,display and send message who has taken leaves
  */
 
 /**
